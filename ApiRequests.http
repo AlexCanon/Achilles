@@ -1,0 +1,4 @@
+GET http://localhost:8081/balance/api/v1/?id=1
+Accept: application/json
+
+###

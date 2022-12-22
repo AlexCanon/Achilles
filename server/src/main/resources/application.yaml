@@ -1,0 +1,22 @@
+#Data Base
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: 1
+    url: jdbc:postgresql://localhost:5433/Practice_DB
+
+# server config
+server:
+  port: 8081
+
+# logging config
+logging:
+  level:
+    com.com.practice: WARN
+    org.springframework.web: ERROR
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: "var/logs/balance.log"
