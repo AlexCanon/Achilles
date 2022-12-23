@@ -31,7 +31,6 @@ public class BalanceServiceImpl implements BalanceService {
     // changeBalance и их сумму в единицу времени. Результат записывать в лог
     @Override
     public Optional<Long> getBalance(Long id) {
-//        assert id != null;
         Optional<BankAccount> account = balanceRepository.findById(id);
         log.info("log - get call");
         log.warn("log - get call");
@@ -42,8 +41,6 @@ public class BalanceServiceImpl implements BalanceService {
 
     @Override
     public void changeBalance(Long id, Long amount) {
-//        assert id != null;
-//        assert amount != null;
         log.info("log - change call");
         balanceRepository.save(new BankAccount(id, amount));
     }
