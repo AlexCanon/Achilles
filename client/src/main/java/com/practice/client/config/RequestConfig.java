@@ -18,6 +18,8 @@ import java.util.List;
 @Component
 @ConfigurationProperties(prefix="achilles.client")
 public class RequestConfig {
+
+    private String serverUrl;
     private int threadCount = 0;// - количество клиентских потоков (>= 1)
     private int readQuota   = 0 ;// - доля запросов getBalance (>= 0)
     private int writeQuota  = 0 ;// - доля запросов changeBalance (>= 0)

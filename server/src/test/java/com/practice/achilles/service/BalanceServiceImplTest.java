@@ -1,6 +1,7 @@
 package com.practice.achilles.service;
 
 import com.practice.achilles.model.BankAccount;
+import com.practice.achilles.model.RequestDTO;
 import com.practice.achilles.repository.BalanceRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -48,7 +49,8 @@ class BalanceServiceImplTest {
     void changeBalance() {
         given(balanceRepository.save(testAccount)).willReturn(testAccount);
 
-        balanceService.changeBalance(id, changeCount);
+        RequestDTO dto = new RequestDTO(1L, 2L);
+        balanceService.changeBalance(dto);
 
         verify(balanceRepository).save(testAccount);
     }

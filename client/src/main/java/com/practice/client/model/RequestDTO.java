@@ -1,8 +1,6 @@
 package com.practice.client.model;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 /**
  * Сущность для отправки данных на изменение
@@ -12,7 +10,10 @@ import lombok.NoArgsConstructor;
  */
 @NoArgsConstructor(access= AccessLevel.PRIVATE)
 @AllArgsConstructor
-public class AccountDTO {
+@Getter
+@Setter
+@EqualsAndHashCode
+public class RequestDTO {
     private Long id;
 
     /**

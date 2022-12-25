@@ -1,9 +1,11 @@
 package com.practice.achilles.model;
 
 import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
+import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.Table;
+
+import javax.persistence.Entity;
 
 /**
  * @author Aleksey Konkin
@@ -14,6 +16,7 @@ import org.springframework.data.relational.core.mapping.Table;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 @Table(name = "bank_account")
 public class BankAccount {
 
@@ -22,6 +25,6 @@ public class BankAccount {
     /**
      * the amount of funds in the bank account
      */
-    @Column(value = "funds_amount")
+    @Column(name = "funds_amount")
     private Long fundsAmount;
 }

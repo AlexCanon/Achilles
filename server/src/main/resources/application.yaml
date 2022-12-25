@@ -6,6 +6,10 @@ spring:
     password: 1
     url: jdbc:postgresql://localhost:5433/Practice_DB
 
+    hikari:
+      transaction-isolation: TRANSACTION_READ_COMMITTED
+      maximum-pool-size: 10
+
 # server config
 server:
   port: 8081

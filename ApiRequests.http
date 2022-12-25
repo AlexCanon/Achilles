@@ -1,3 +1,4 @@
+###
 GET http://localhost:8081/balance/api/v1/?id=1
 Accept: application/json
 
@@ -9,5 +10,14 @@ Accept: application/json
 
 GET http://localhost:8080/client/api/v1/stop
 Accept: application/json
+
+###
+PUT http://localhost:8081/balance/api/v1
+Content-Type: application/json
+
+{
+  "id": "3",
+  "changeFunds": "1"
+}
 
 ###

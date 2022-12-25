@@ -24,6 +24,7 @@ application.yaml contains parameters for:
 
 ### DB:
 Uses spring-jdbc for connect to DataBase
+Used pessimistic lock
 
 ### Logging:
 writes to the log file "var/logs/balance.log" 

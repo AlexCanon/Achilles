@@ -20,5 +20,9 @@
   "name": "achilles.client.write-id-list",
   "type": "java.util.ArrayList",
   "description": "Ids for write requests."
+}, {
+  "name": "achilles.client.server-url",
+  "type": "java.lang.String",
+  "description": "Server's url."
 }
 ]}

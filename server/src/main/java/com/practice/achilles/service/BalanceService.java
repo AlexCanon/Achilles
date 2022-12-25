@@ -1,5 +1,7 @@
 package com.practice.achilles.service;
 
+import com.practice.achilles.model.RequestDTO;
+
 import java.util.Optional;
 
 /**
@@ -23,5 +25,5 @@ public interface BalanceService {
      * @param id    идентификатор банковского счёта
      * @param amount сумма денег, которую нужно добавить к банковскому счёту
      */
-    void changeBalance(Long id, Long amount);
+    void changeBalance(RequestDTO requestDTO);
 }
