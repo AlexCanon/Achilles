@@ -21,3 +21,8 @@ Content-Type: application/json
 }
 
 ###
+
+GET http://localhost:8081/balance/api/v1?id=5
+Accept: application/json
+
+###

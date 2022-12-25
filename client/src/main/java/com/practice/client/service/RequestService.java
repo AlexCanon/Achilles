@@ -43,7 +43,7 @@ public class RequestService {
                 .queryParam("id", accountId)
                 .build(urlVariables);
         Long fundBalance = rest.getForObject(url, Long.class);
-        log.info("GET: account {} fund balance {}",accountId, fundBalance);
+        log.info("GET RESULT: account {} fund balance {}",accountId, fundBalance);
     }
 
     public void changeBalance(Long id, Long fundsIncrease) {

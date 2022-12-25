@@ -16,7 +16,7 @@ import java.util.Optional;
  */
 @Service
 @Slf4j
-@Transactional
+@Transactional(timeout = 3)//in case of deadlock (because of pessimistic write)
 @RequiredArgsConstructor
 public class BalanceServiceImpl implements BalanceService {
 
@@ -27,7 +27,7 @@ public class BalanceServiceImpl implements BalanceService {
     @Override
     public Optional<Long> getBalance(Long id) {
         Optional<BankAccount> account = balanceRepository.findById(id);
-        log.info("♥♥♥SERVICE GET CALL");
+        log.info("♥♥♥SERVICE GET CALL by id: {}", id);
         return account.map(BankAccount::getFundsAmount);
     }
 
