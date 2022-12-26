@@ -1,7 +1,7 @@
 Achilles project
 ===========
 ### Instruments:
-spring-boot, rest-template,
+spring-boot, spring-actuator, rest-template,
 logback, postgreSQL, spring-data-jpa
 ### Have 2 parts: "client" and "server"
 
@@ -20,8 +20,9 @@ GET: client/api/v1/stop to stop client;
 application.yaml contains parameters for: datasource; port; logging;
 
 ### DB:
-Uses spring-jdbc for connect to DataBase
-Used pessimistic lock
+The Spring-jpa and postgres
+
+, pessimistic-write lock
 
 ### Logging:
 writes to the log file "var/logs/balance.log" 
