@@ -32,7 +32,7 @@ public class ClientConfigService {
 
     private boolean clientON = false;
 
-    public ClientConfigService(RequestConfig config, RestTemplate rest, RequestService requestService) {
+    public ClientConfigService(RequestConfig config, RequestService requestService) {
         this.config = config;
         this.requestService = requestService;
     }
@@ -40,20 +40,33 @@ public class ClientConfigService {
     public void runClient() {
         int readQuota = config.getReadQuota();
         int writeQuota = config.getWriteQuota();
+        //ids for write requests
         List<Long> writeIdList = config.getWriteIdList();
+        //ids for read requests
         List<Long> readIdList = config.getReadIdList();
+        // is requests looped
+        Boolean isLooped = config.getIsLooped();
         clientON = true;
         executor = Executors.newFixedThreadPool(config.getThreadCount());
-        Runnable task = () -> {
-//            while (clientON) {
-                randomlyExecuteReadOrChange(readQuota, writeQuota, writeIdList, readIdList);
-//            }
-        };
+        Runnable task = isLooped ? loopedTask(readQuota, writeQuota, writeIdList, readIdList) :
+                notLoopedTask(readQuota, writeQuota, writeIdList, readIdList);
         for (int i = 0; i < config.getThreadCount(); i++) {
             executor.submit(task);
         }
 
         log.info("END");
+    }
+
+    private Runnable loopedTask(int readQuota, int writeQuota, List<Long> writeIdList, List<Long> readIdList) {
+        return () -> {
+            while (clientON) {
+                randomlyExecuteReadOrChange(readQuota, writeQuota, writeIdList, readIdList);
+            }
+        };
+    }
+
+    private Runnable notLoopedTask(int readQuota, int writeQuota, List<Long> writeIdList, List<Long> readIdList) {
+        return () -> randomlyExecuteReadOrChange(readQuota, writeQuota, writeIdList, readIdList);
     }
 
     /**

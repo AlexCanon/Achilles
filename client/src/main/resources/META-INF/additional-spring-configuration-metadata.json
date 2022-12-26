@@ -3,8 +3,7 @@
   "name": "achilles.client.thread-count",
   "type": "java.lang.Integer",
   "description": "Sets the number of threads for client."
-},
-  {
+}, {
   "name": "achilles.client.read-quota",
   "type": "java.lang.Integer",
   "description": "Sets the percentage of read requests."
@@ -24,5 +23,9 @@
   "name": "achilles.client.server-url",
   "type": "java.lang.String",
   "description": "Server's url."
+}, {
+  "name": "achilles.client.is-looped",
+  "type": "java.lang.Boolean",
+  "description": "Are the Client's requests looped."
 }
 ]}
