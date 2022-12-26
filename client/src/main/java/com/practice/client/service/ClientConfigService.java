@@ -45,7 +45,9 @@ public class ClientConfigService {
         clientON = true;
         executor = Executors.newFixedThreadPool(config.getThreadCount());
         Runnable task = () -> {
-            randomlyExecuteReadOrChange(readQuota, writeQuota, writeIdList, readIdList);
+//            while (clientON) {
+                randomlyExecuteReadOrChange(readQuota, writeQuota, writeIdList, readIdList);
+//            }
         };
         for (int i = 0; i < config.getThreadCount(); i++) {
             executor.submit(task);
@@ -56,8 +58,9 @@ public class ClientConfigService {
 
     /**
      * Случайно выполнить запрос обновления или чтения
-     * @param readQuota доля запросов чтения
-     * @param writeQuota доля запросов обновления(запись)
+     *
+     * @param readQuota   доля запросов чтения
+     * @param writeQuota  доля запросов обновления(запись)
      * @param writeIdList список id для запросов на запись
      * @param readIdList  список id для запросов на чтение
      */
@@ -68,8 +71,11 @@ public class ClientConfigService {
         if (ThreadLocalRandom.current().nextDouble() < readProbability) {
             requestService.getBalance(randomFromList(readIdList));
         } else {
-            //todo increase count need to changed during client work
-            requestService.changeBalance(randomFromList(writeIdList), 1L);
+            // increase by a random number
+            int min = 1;
+            int max = 100;
+            Long randomIncreasedCount = (long) ThreadLocalRandom.current().nextInt(min, max + 1);
+            requestService.changeBalance(randomFromList(writeIdList), randomIncreasedCount);
         }
     }
 

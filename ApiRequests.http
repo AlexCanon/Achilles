@@ -26,3 +26,11 @@ GET http://localhost:8081/balance/api/v1?id=5
 Accept: application/json
 
 ###
+
+GET http://localhost:8081/actuator/metrics/http.server.requests
+Accept: application/json
+
+###
+
+GET http://localhost:8081/actuator/prometheus
+Accept: text/plain

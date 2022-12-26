@@ -47,7 +47,7 @@ public class RequestService {
     }
 
     public void changeBalance(Long id, Long fundsIncrease) {
-        log.info(String.format("UPDATE REQUEST id:%s, increaseCount:%s", id, fundsIncrease));
+        log.info("UPDATE REQUEST id:{}, increaseCount:{}", id, fundsIncrease);
         RequestDTO requestDTO = new RequestDTO(id, fundsIncrease);
         rest.put(serviceUrl, requestDTO);
     }
