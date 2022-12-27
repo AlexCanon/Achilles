@@ -34,4 +34,7 @@ Through the "EfficiencyLogger" aspect I calculate the average number of requests
 Spring Actuator, but  I still didn't understand how to
 make it short and "pleasant".
 
+### Planned improvements
 
+In the near future it is planned
+to replace the rest client with WebFlux (reactive)
