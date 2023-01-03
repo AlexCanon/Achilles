@@ -22,8 +22,6 @@ public class BalanceServiceImpl implements BalanceService {
 
     private final BalanceRepository balanceRepository;
 
-    //todo подсчитывать количество запросов getBalance,
-    // changeBalance и их сумму в единицу времени. Результат записывать в лог
     @Override
     public Optional<Long> getBalance(Long id) {
         Optional<BankAccount> account = balanceRepository.findById(id);

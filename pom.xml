@@ -8,7 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>achilles</name>
 	<packaging>pom</packaging>
-	<description>bank service practice</description>
+	<description>practice server</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
