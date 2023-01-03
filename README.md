@@ -28,13 +28,15 @@ The Spring-jpa and postgres
 writes to the log file "var/logs/balance.log" 
 results of api calls
 
-It's a shame, but the calculation of the number of requests
-was made via a "bicycle" - 
-Through the "EfficiencyLogger" aspect I calculate the average number of requests. I tried through 
-Spring Actuator, but  I still didn't understand how to
-make it short and "pleasant".
+### Metrics:
+The calculation of the number of requests was made
+using the "Efficiency Logger" aspect
+, which calculates the average number of requests.
+
+Spring Actuator with Prometheus...
+I tried to use this thing to get a metric 
+of the requests speed to the server.
 
 ### Planned improvements
-
 In the near future it is planned
 to replace the rest client with WebFlux (reactive)
