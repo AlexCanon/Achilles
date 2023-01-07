@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import reactor.core.publisher.Mono;
 
 import java.util.Optional;
 
@@ -22,11 +23,9 @@ public class BalanceServiceImpl implements BalanceService {
 
     private final BalanceRepository balanceRepository;
 
-    //todo подсчитывать количество запросов getBalance,
-    // changeBalance и их сумму в единицу времени. Результат записывать в лог
     @Override
-    public Optional<Long> getBalance(Long id) {
-        Optional<BankAccount> account = balanceRepository.findById(id);
+    public Mono<Long> getBalance(Long id) {
+        Mono<BankAccount> account = balanceRepository.findById(id);
         log.info("♥♥♥SERVICE GET CALL by id: {}", id);
         return account.map(BankAccount::getFundsAmount);
     }
@@ -38,8 +37,8 @@ public class BalanceServiceImpl implements BalanceService {
         Long amount = requestDTO.getChangeFunds();
 
         if (id != null && amount != null) {
-            Optional<BankAccount> account = balanceRepository.findById(id);
-            account.ifPresentOrElse(acc -> {
+            Mono<BankAccount> account = balanceRepository.findById(id);
+            account.blockOptional().ifPresentOrElse(acc -> {
                 acc.setFundsAmount(acc.getFundsAmount() + amount);
                 log.info("Account {} funds was {}, increased to {} ", id, acc.getFundsAmount(), amount);
             }, () -> {

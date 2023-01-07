@@ -37,7 +37,7 @@ public class EfficiencyLogger {
      * Подсчитать и залогировать количество запросов к endpoint'ам
      * RPS (request per second)
      */
-    @Scheduled(fixedDelay = 10000)//every 5 seconds
+    @Scheduled(fixedDelay = 3000)//every 3 seconds
     public void calculateAndLogServiceRPS() {
         double readCount = 0;
         double writeCount = 0;

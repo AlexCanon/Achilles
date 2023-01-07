@@ -1,4 +1,4 @@
-package test.java.com.practice.achilles;
+package com.practice.achilles;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

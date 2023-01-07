@@ -8,8 +8,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-import java.util.Optional;
+import reactor.core.publisher.Mono;
+import reactor.test.StepVerifier;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
@@ -22,14 +22,19 @@ class BalanceServiceImplTest {
     @Mock
     private BalanceRepository balanceRepository;
 
-    Long id = 1L;
-    Long changeCount = 5L;
-    BankAccount testAccount = new BankAccount(id, changeCount);
+    private final Long id = 1L;
+    private final Long moneyAmount = 5L;
+    private final BankAccount testAccount = new BankAccount(id, moneyAmount);
+
+    // reactive test object
+    private Mono<BankAccount> expected;
 
     @BeforeEach
      void setUp() {
         MockitoAnnotations.openMocks(this);
         balanceService = new BalanceServiceImpl(balanceRepository);
+
+        expected = Mono.just(testAccount);
     }
 
     @AfterEach
@@ -38,16 +43,20 @@ class BalanceServiceImplTest {
 
     @Test
     void getBalance() {
-        given(balanceRepository.findById(id)).willReturn(Optional.of(testAccount));
-        Optional<Long> actual = balanceService.getBalance(id);
+        given(balanceRepository.findById(id)).willReturn(expected);
+        Mono<Long> actual = balanceService.getBalance(id);
         verify(balanceRepository).findById(id);
 
-        assertThat(actual).isEqualTo(Optional.of(changeCount));
+        StepVerifier.create(actual)
+                // check elements in content of subscription
+                .expectNext(moneyAmount)
+                // check process correct ending
+                .verifyComplete();
     }
 
     @Test
-    void changeBalance() {
-        given(balanceRepository.save(testAccount)).willReturn(testAccount);
+    void changeBalance() {//todo still need fix
+        given(balanceRepository.save(testAccount)).willReturn(expected);
 
         RequestDTO dto = new RequestDTO(1L, 2L);
         balanceService.changeBalance(dto);

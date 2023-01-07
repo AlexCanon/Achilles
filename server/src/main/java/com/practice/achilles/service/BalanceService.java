@@ -1,6 +1,7 @@
 package com.practice.achilles.service;
 
 import com.practice.achilles.model.RequestDTO;
+import reactor.core.publisher.Mono;
 
 import java.util.Optional;
 
@@ -17,7 +18,7 @@ public interface BalanceService {
      * @param id идентификатор банковского счёта
      * @return сумма денег на банковском счёте
      */
-    Optional<Long> getBalance(Long id);
+    Mono<Long> getBalance(Long id);
 
     /**
      * Изменение баланса на определённое значение

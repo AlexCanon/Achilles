@@ -8,6 +8,7 @@ import com.practice.achilles.service.BalanceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 
 import java.util.Optional;
 
@@ -16,9 +17,9 @@ import java.util.Optional;
  * @since 18.12.2022
  */
 @RestController
-@RequestMapping("balance/api/v1")
+@RequestMapping("server/api/v1")
 @RequiredArgsConstructor
-public class BalanceController {
+public class ServerController {
 
     private final EfficiencyLogger efficiencyLogger;
     private final BalanceService balanceService;
@@ -26,7 +27,7 @@ public class BalanceController {
     @LogReadRequestCount
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public Optional<Long> read(@RequestParam Long id) {
+    public Mono<Long> read(@RequestParam Long id) {
         return balanceService.getBalance(id);
     }
 
