@@ -16,7 +16,7 @@ import java.util.Optional;
  * @since 18.12.2022
  */
 @RestController
-@RequestMapping("balance/api/v1")
+@RequestMapping("server/api/v1")
 @RequiredArgsConstructor
 public class BalanceController {
 
